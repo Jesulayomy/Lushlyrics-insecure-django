@@ -9,13 +9,11 @@ import json
 # import cardupdate
 
 
-
 f = open('card.json', 'r')
 CONTAINER = json.load(f)
 
 def default(request):
     global CONTAINER
-
 
     if request.method == 'POST':
 
@@ -24,7 +22,6 @@ def default(request):
 
     song = 'kSFJGEHDCrQ'
     return render(request, 'player.html',{'CONTAINER':CONTAINER, 'song':song})
-
 
 
 def playlist(request):
@@ -60,8 +57,6 @@ def search(request):
   return render(request, 'search.html', {'CONTAINER': song_li, 'song':song_li[0][0]['id']})
 
 
-
-
 def add_playlist(request):
     cur_user = playlist_user.objects.get(username = request.user)
 
@@ -80,6 +75,11 @@ def login_user(request):
       return redirect('/')
    else:
       return render(request, 'login.html', {})
+
+
+def logout_user(request):
+    logout(request)
+    return redirect('/')
 
 
 def signup(request):
