@@ -28,7 +28,7 @@ def default(request):
 
 
 def playlist(request):
-    cur_user = playlist_user.objects.get(username = request.user)
+    cur_user = playlist_user.objects.get(username=request.user)
     try:
       song = request.GET.get('song')
       song = cur_user.playlist_song_set.get(song_title=song)
@@ -66,9 +66,32 @@ def add_playlist(request):
     cur_user = playlist_user.objects.get(username = request.user)
 
     if (request.POST['title'],) not in cur_user.playlist_song_set.values_list('song_title', ):
-
         songdic = (YoutubeSearch(request.POST['title'], max_results=1).to_dict())[0]
         song__albumsrc=songdic['thumbnails'][0]
         cur_user.playlist_song_set.create(song_title=request.POST['title'],song_dur=request.POST['duration'],
         song_albumsrc = song__albumsrc,
         song_channel=request.POST['channel'], song_date_added=request.POST['date'],song_youtube_id=request.POST['songid'])
+
+
+def login_user(request):
+   if request.method == "POST":
+      user = User.objects.get(username=request.POST['username'])
+      login(request, user)
+      return redirect('/')
+   else:
+      return render(request, 'login.html', {})
+
+
+def signup(request):
+   if request.method == "POST":
+      user = User.objects.create(
+         username=request.POST['username'],
+         email=request.POST['email']
+      )
+      user.set_password(request.POST['password'])
+      user.save()
+      playlist_user.objects.create(username=user.username)
+      login(request, user)
+      return redirect('/')
+   else:
+      return render(request, 'signup.html', {})
