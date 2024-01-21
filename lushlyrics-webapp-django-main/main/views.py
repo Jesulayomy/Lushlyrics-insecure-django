@@ -39,7 +39,6 @@ def playlist(request):
         return HttpResponse("")
     song = 'kSFJGEHDCrQ'
     user_playlist = cur_user.playlist_song_set.all()
-    # print(list(playlist_row)[0].song_title)
     return render(request, 'playlist.html', {'song':song,'user_playlist':user_playlist})
 
 
@@ -52,7 +51,6 @@ def search(request):
     search = request.GET.get('search')
     song = YoutubeSearch(search, max_results=10).to_dict()
     song_li = [song[:10:2],song[1:10:2]]
-    # print(song_li)
   except:
     return redirect('/')
 
