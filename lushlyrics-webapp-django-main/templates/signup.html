@@ -1,17 +1,11 @@
+{% extends 'player.html' %}
 {% load static %}
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="https://cdn.discordapp.com/icons/715958380556058684/773d6583cd1d7aef41e701783d353aef.webp?size=128" type="image/x-icon">
-<meta name="description" itemprop="description"
-        content="Play your playlists and favourites tracks, albums, and artists" />
-    <meta name="keywords"
-        content="convert, convert playlists, transfer, syncing, smart links, free, apple music, streaming services" />
+{% block css %}
     <link rel="stylesheet" href="{% static "formStyle.css" %}">
-    <title>Youttify</title>
-</head>
+{% endblock %}
+
+{% block skript %}
 <script>
     function checkPassword(form) {
         const confirm_password = document.getElementById("cpwd");
@@ -24,10 +18,9 @@
         }
     }
 </script>
+{% endblock %}
 
-<body>
-
-
+{% block main %}
         <div class="signup_header">
             <a href="" target="_blank">
             </a>
@@ -39,33 +32,33 @@
 
             <span class='label signup-title center-align'>Sign up for free to start listening.</span>
             <label for="sign-up-username" class="label">
-                What's your name?{% if not username %}
-                <span style="color:#f79862;">Username already exists</span>
+                What's your name?{% if errors.username %}
+                <span style="color:#f79862;">{{ errors.username }}</span>
             {% endif %}
             </label>
 
-            <input type="text" class="form_input" name="username" pattern="[A-Za-z]+" placeholder="Enter your name." required>
+            <input type="text" class="imput form_input" name="username" pattern="[A-Za-z]+" placeholder="Enter your name." required>
 
 
             <label for="sign-up-email" class="label">
-                What's your email?{% if not email %}
-                <span style="color:#f79862;">Email already exists</span>
+                What's your email?{% if errors.email %}
+                <span style="color:#f79862;">{{ errors.email }}</span>
             {% endif %}
             </label>
 
-            <input type="email" class="form_input" name="email" placeholder="Enter your email." required>
+            <input type="email" class="imput form_input" name="email" placeholder="Enter your email." required>
 
 
             <label for="sign-up-pwd" class="label">
                 Create a password
             </label>
-            <input type="password" class="form_input" id="pwd" name="password" placeholder="Create a password."
+            <input type="password" class="imput form_input" id="pwd" name="password" placeholder="Create a password."
                 required>
 
             <label for="sign-up-cpwd" class="label">
                 Confirm your password
             </label>
-            <input type="password" class="form_input" id="cpwd" name="confirm-password" oninput="checkPassword(this)"
+            <input type="password" class="imput form_input" id="cpwd" name="confirm-password" oninput="checkPassword(this)"
                 placeholder="Re-type your password" required>
 
             <button class='btn btn_log_in' type="submit">Sign up</button>
@@ -74,6 +67,4 @@
         </form>
     </div>
 
-</body>
-
-</html>
+{% endblock %}

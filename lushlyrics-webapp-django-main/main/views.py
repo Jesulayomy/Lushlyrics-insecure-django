@@ -90,6 +90,15 @@ def logout_user(request):
 
 def signup(request):
    if request.method == "POST":
+      try:
+         user = User.objects.get(username=request.POST['username'])
+         return render(request, 'signup.html', {'errors': {'username': 'Username already exists'}})
+      except User.DoesNotExist:
+        try:
+          user = User.objects.get(email=request.POST['email'])
+          return render(request, 'signup.html', {'errors': {'email': 'Email already exists'}})
+        except User.DoesNotExist:
+           pass
       user = User.objects.create(
          username=request.POST['username'],
          email=request.POST['email']
