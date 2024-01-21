@@ -25,6 +25,8 @@ def default(request):
 
 
 def playlist(request):
+    if not request.user.is_authenticated:
+        return redirect('/login')
     cur_user = playlist_user.objects.get(username=request.user)
     try:
       song = request.GET.get('song')

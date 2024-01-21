@@ -262,6 +262,7 @@ input:invalid {
 
 .logout {
     display: none;
+    color: #ff0000;
 }
 .profile:hover .hide-onhover{
     display: none;
@@ -407,10 +408,6 @@ input:invalid {
 .cardContainer::-webkit-scrollbar-thumb:active {
   background: #5a5a5a;
 }
-
-
-
-
 
 .card {
     width: 220px;
