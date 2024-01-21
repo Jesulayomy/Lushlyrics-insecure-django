@@ -70,9 +70,15 @@ def add_playlist(request):
 
 def login_user(request):
    if request.method == "POST":
-      user = User.objects.get(username=request.POST['username'])
-      login(request, user)
-      return redirect('/')
+      try:
+        user = User.objects.get(username=request.POST['username'])
+      except User.DoesNotExist:
+         return render(request, 'login.html', {'errors': 'User does not exist'})
+      if user.check_password(request.POST['pasword']):
+        login(request, user)
+        return redirect('/')
+      else:
+         return render(request, 'login.html', {'errors': 'Password incorrect'})
    else:
       return render(request, 'login.html', {})
 
