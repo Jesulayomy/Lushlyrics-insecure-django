@@ -7,8 +7,10 @@ from django.urls import path, include
 def error_400_view(request):
     return django.views.defaults.bad_request(request, None)
 
+
 def error_404_view(request):
     return django.views.defaults.page_not_found(request, None)
+
 
 def error_500_view(request):
     return django.views.defaults.server_error(request, None)

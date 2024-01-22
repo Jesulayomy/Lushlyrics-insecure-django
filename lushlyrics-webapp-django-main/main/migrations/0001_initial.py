@@ -15,21 +15,43 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='playlist_user',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                (
+                    'id',
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name='ID'
+                    )
+                ),
                 ('username', models.CharField(max_length=200)),
             ],
         ),
         migrations.CreateModel(
             name='playlist_song',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                (
+                    'id',
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name='ID'
+                    )
+                ),
                 ('song_title', models.CharField(max_length=200)),
                 ('song_youtube_id', models.CharField(max_length=20)),
                 ('song_albumsrc', models.CharField(max_length=255)),
                 ('song_dur', models.CharField(max_length=7)),
                 ('song_channel', models.CharField(max_length=100)),
                 ('song_date_added', models.CharField(max_length=12)),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='main.playlist_user')),
+                (
+                    'user',
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to='main.playlist_user'
+                    )
+                ),
             ],
         ),
     ]
