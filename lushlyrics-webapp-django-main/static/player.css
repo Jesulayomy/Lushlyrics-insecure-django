@@ -363,6 +363,10 @@ input:invalid {
   cursor: pointer;
 }
 
+.underline {
+  color: #1db954;
+}
+
 .cardContainer{
     height: 290px;
     display: flex;
