@@ -2,69 +2,91 @@
 {% load static %}
 
 {% block css %}
-    <link rel="stylesheet" href="{% static "formStyle.css" %}">
+<link rel="stylesheet" href="{% static 'formStyle.css' %}">
 {% endblock %}
 
 {% block skript %}
 <script>
-    function checkPassword(form) {
-        const confirm_password = document.getElementById("cpwd");
-        var password = document.getElementById("pwd").value;
-        console.log(password)
-        if (password != confirm_password.value) {
-            confirm_password.setCustomValidity("Password did not match");
-        } else {
-            confirm_password.setCustomValidity("");
-        }
+  function checkPassword(form) {
+    const confirm_password = document.getElementById('cpwd');
+    var password = document.getElementById('pwd').value;
+    console.log(password);
+    if (password != confirm_password.value) {
+      confirm_password.setCustomValidity('Password did not match');
+    } else {
+      confirm_password.setCustomValidity('');
     }
+  }
 </script>
 {% endblock %}
 
 {% block main %}
-        <div class="signup_header">
-            <a href="" target="_blank">
-            </a>
-        </div>
+<div class="signup_header">
+  <a href="" target="_blank"> </a>
+</div>
+<div class="signup_body">
+  <form class="login_form" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <span class="label signup-title center-align">
+      Sign up for free to start listening.
+    </span>
 
-    <div class="signup_body">
-        <form class="login_form" method='POST' enctype="multipart/form-data">
-            {% csrf_token %}
+    <label for="sign-up-username" class="label">
+      What's your name?
+      {% if errors.username %}
+      <span style="color: #f79862">{{ errors.username }}</span>
+      {% endif %}
+    </label>
+    <input
+      type="text"
+      class="imput form_input"
+      name="username"
+      pattern="[A-Za-z]+"
+      placeholder="Enter your name."
+      required
+    />
 
-            <span class='label signup-title center-align'>Sign up for free to start listening.</span>
-            <label for="sign-up-username" class="label">
-                What's your name?{% if errors.username %}
-                <span style="color:#f79862;">{{ errors.username }}</span>
-            {% endif %}
-            </label>
+    <label for="sign-up-email" class="label">
+      What's your email?
+      {% if errors.email %}
+      <span style="color: #f79862">{{ errors.email }}</span>
+      {% endif %}
+    </label>
+    <input
+      type="email"
+      class="imput form_input"
+      name="email"
+      placeholder="Enter your email."
+      required
+    />
 
-            <input type="text" class="imput form_input" name="username" pattern="[A-Za-z]+" placeholder="Enter your name." required>
+    <label for="sign-up-pwd" class="label"> Create a password </label>
+    <input
+      type="password"
+      class="imput form_input"
+      id="pwd"
+      name="password"
+      placeholder="Create a password."
+      required
+    />
 
+    <label for="sign-up-cpwd" class="label"> Confirm your password </label>
+    <input
+      type="password"
+      class="imput form_input"
+      id="cpwd"
+      name="confirm-password"
+      oninput="checkPassword(this)"
+      placeholder="Re-type your password"
+      required
+    />
 
-            <label for="sign-up-email" class="label">
-                What's your email?{% if errors.email %}
-                <span style="color:#f79862;">{{ errors.email }}</span>
-            {% endif %}
-            </label>
-
-            <input type="email" class="imput form_input" name="email" placeholder="Enter your email." required>
-
-
-            <label for="sign-up-pwd" class="label">
-                Create a password
-            </label>
-            <input type="password" class="imput form_input" id="pwd" name="password" placeholder="Create a password."
-                required>
-
-            <label for="sign-up-cpwd" class="label">
-                Confirm your password
-            </label>
-            <input type="password" class="imput form_input" id="cpwd" name="confirm-password" oninput="checkPassword(this)"
-                placeholder="Re-type your password" required>
-
-            <button class='btn btn_log_in' type="submit">Sign up</button>
-            <div class="divider"></div>
-            <p class='label center-align'>Already have an account? <a href="/login">Log in</a>.</p>
-        </form>
-    </div>
+    <button class="btn btn_log_in" type="submit">Sign up</button>
+    <div class="divider"></div>
+    <p class="label center-align">
+      Already have an account? <a href="/login">Log in</a>.
+    </p>
+  </form>
+</div>
 
 {% endblock %}
