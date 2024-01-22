@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block css %}
-<link rel="stylesheet" href="{% static 'formStyle.css' %}">
+<link rel="stylesheet" href="{% static 'formStyle.css' %}" />
 {% endblock %}
 
 {% block skript %}
@@ -18,7 +18,7 @@
     }
   }
 </script>
-{% endblock %}
+{% endblock %} 
 
 {% block main %}
 <div class="signup_header">
@@ -27,16 +27,7 @@
 <div class="signup_body">
   <form class="login_form" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-    <span class="label signup-title center-align">
-      Sign up for free to start listening.
-    </span>
-
-    <label for="sign-up-username" class="label">
-      What's your name?
-      {% if errors.username %}
-      <span style="color: #f79862">{{ errors.username }}</span>
-      {% endif %}
-    </label>
+    <label for="sign-up-username" class="label"> Username </label>
     <input
       type="text"
       class="imput form_input"
@@ -46,12 +37,7 @@
       required
     />
 
-    <label for="sign-up-email" class="label">
-      What's your email?
-      {% if errors.email %}
-      <span style="color: #f79862">{{ errors.email }}</span>
-      {% endif %}
-    </label>
+    <label for="sign-up-email" class="label"> Email </label>
     <input
       type="email"
       class="imput form_input"
@@ -60,33 +46,36 @@
       required
     />
 
-    <label for="sign-up-pwd" class="label"> Create a password </label>
+    <label for="sign-up-pwd" class="label"> New password </label>
     <input
       type="password"
       class="imput form_input"
       id="pwd"
       name="password"
-      placeholder="Create a password."
+      placeholder="Enter a new password."
       required
     />
 
-    <label for="sign-up-cpwd" class="label"> Confirm your password </label>
+    <label for="sign-up-cpwd" class="label"> Confirm password </label>
     <input
       type="password"
       class="imput form_input"
       id="cpwd"
       name="confirm-password"
       oninput="checkPassword(this)"
-      placeholder="Re-type your password"
+      placeholder="Re-type same password"
       required
     />
 
-    <button class="btn btn_log_in" type="submit">Sign up</button>
+    {% if errors %}
+    <span style="color: #f79862; padding-bottom: 20px; text-align: center">
+        {{ errors }}
+    </span>
+    {% endif %}
+    <button class="btn btn_log_in" type="submit">Reset password</button>
     <div class="divider"></div>
-    <p class="label center-align">
-      Already have an account? <a href="/login">Log in</a>.
-    </p>
+    <p class="label center-align">Don't have an account?</p>
+    <a class="btn btn_sign_up" href="/signup">Sign Up for Lushlyrics</a>
   </form>
 </div>
-
 {% endblock %}
