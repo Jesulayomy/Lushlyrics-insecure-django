@@ -74,7 +74,7 @@ def login_user(request):
         user = User.objects.get(username=request.POST['username'])
       except User.DoesNotExist:
          return render(request, 'login.html', {'errors': 'User does not exist'})
-      if user.check_password(request.POST['pasword']):
+      if user.check_password(request.POST['password']):
         login(request, user)
         return redirect('/')
       else:
@@ -110,3 +110,20 @@ def signup(request):
       return redirect('/')
    else:
       return render(request, 'signup.html', {})
+
+
+def reset(request):
+   if request.method == "POST":
+      try:
+        user = User.objects.get(
+          username=request.POST['username'],
+          email=request.POST['email']
+        )
+      except User.DoesNotExist:
+        return render(request, 'reset.html', {'errors': 'Username does not exist or Email is incorrect'})
+      user.set_password(request.POST['password'])
+      user.save()
+      login(request, user)
+      return redirect('/')
+   else:
+      return render(request, 'reset.html', {})

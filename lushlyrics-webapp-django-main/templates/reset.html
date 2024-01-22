@@ -1,0 +1,66 @@
+{% extends 'player.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'formStyle.css' %}">
+{% endblock %}
+
+{% block skript %}
+<script>
+    function checkPassword(form) {
+        const confirm_password = document.getElementById("cpwd");
+        var password = document.getElementById("pwd").value;
+        console.log(password)
+        if (password != confirm_password.value) {
+            confirm_password.setCustomValidity("Password did not match");
+        } else {
+            confirm_password.setCustomValidity("");
+        }
+    }
+</script>
+{% endblock %}
+
+{% block main %}
+			<div class="signup_header">
+                <a href="" target="_blank">
+				
+                    </a>
+            </div>
+        </a>
+        <div class="signup_body">
+            <form class="login_form" method='POST' enctype="multipart/form-data">
+                {% csrf_token %}
+                <label for="sign-up-username" class="label">
+                    Username
+                </label>
+                <input type="text" class="imput form_input" name="username" pattern="[A-Za-z]+" placeholder="Enter your name." required>
+    
+                <label for="sign-up-email" class="label">
+                    Email
+                </label>
+                <input type="email" class="imput form_input" name="email" placeholder="Enter your email." required>
+
+                <label for="sign-up-pwd" class="label">
+                    New password
+                </label>
+                <input type="password" class="imput form_input" id="pwd" name="password" placeholder="Enter a new password."
+                    required>
+
+                <label for="sign-up-cpwd" class="label">
+                    Confirm password
+                </label>
+                <input type="password" class="imput form_input" id="cpwd" name="confirm-password" oninput="checkPassword(this)"
+                    placeholder="Re-type same password" required>
+                {% if errors %}
+                <span style="color:#f79862;
+                             padding-bottom:20px;
+                             text-align:center;">{{ errors }}</span>
+                {% endif %}
+                <button class='btn btn_log_in' type="submit">Reset password</button>
+                <div class="divider"></div>
+                <p class='label center-align'>Don't have an account?</p>
+            <a class='btn btn_sign_up' href="/signup">Sign Up for Lushlyrics</a>
+            </form>
+        </div>
+
+{% endblock %}
