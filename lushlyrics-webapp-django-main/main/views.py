@@ -99,11 +99,14 @@ def login_user(request):
         try:
             user = User.objects.get(username=request.POST["username"])
         except User.DoesNotExist:
-            return render(
-                request,
-                "login.html",
-                {"errors": "User does not exist"}
-            )
+            try:
+                user = User.objects.get(email=request.POST['username'])
+            except User.DoesNotExist:
+                return render(
+                    request,
+                    "login.html",
+                    {"errors": "User does not exist"}
+                )
         if user.check_password(request.POST["password"]):
             login(request, user)
             return redirect("/")

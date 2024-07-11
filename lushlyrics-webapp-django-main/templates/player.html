@@ -145,10 +145,11 @@
                         <div class="card c1">
                             <div class="albumcover">
                                 <img class="albumimg" src="{{ card.0 }}" alt="" srcset="">
-                                <div class="albumplay" onclick='playSong("{{ forloop.counter0 }}","{{ playlist.2 }}")'>
+                                <div class="albumplay mainicons playicon" onclick='playSong("{{ forloop.counter0 }}","{{ playlist.2 }}")'>
                                     <img
-                                        src="https://cdn.discordapp.com/attachments/768083738848133130/769476261181128734/image_1.png"
-                                        alt="">
+                                        class="mainicons playicon"
+                                        src="https://www.svgrepo.com/show/442703/play-circle.svg"
+                                        alt="Play Album">
                                 </div>
                             </div>
                             <span class='label albumtitle bond-to-two-lines'>{{ card.1 }}</span>
@@ -184,11 +185,11 @@
               {% csrf_token %}
                 <div type='submit' class="like-icon mainicons" id="like-icon">
                     <img class="heart" id="stroke"
-                        src="https://cdn.discordapp.com/attachments/768083738848133130/773960377683673198/Vector1.svg"
-                        alt="">
+                        src="https://www.svgrepo.com/show/513212/heart.svg"
+                        alt="Like">
                     <img class="heart hidden" id="filled"
-                        src="https://cdn.discordapp.com/attachments/768083738848133130/773960848972185650/Vector2.svg"
-                        alt="">
+                        src="https://www.svgrepo.com/show/513311/heart.svg"
+                        alt="Liked">
                 </div>
             </form>
         </div>
@@ -197,23 +198,23 @@
             <div class="playOptions">
                 <div onclick="goToStart()" class="mainicons">
                     <img class="mainicons"
-                        src="https://cdn.discordapp.com/attachments/768083738848133130/773142728145371146/skip-back.svg"
-                        alt="">
+                        src="https://www.svgrepo.com/show/514048/backward.svg"
+                        alt="Reverse">
                 </div>
                 <div id='playicon' class="mainicons playicon">
                     <img class="mainicons playicon"
-                        src="https://cdn.discordapp.com/attachments/768083738848133130/773142731144560640/play-circle.svg"
-                        alt="">
+                        src="https://www.svgrepo.com/show/442703/play-circle.svg"
+                        alt="Play">
                 </div>
                 <div id='pauseicon' class="mainicons playicon">
                     <img class="mainicons playicon"
-                        src="https://cdn.discordapp.com/attachments/768083738848133130/773873949082910751/pause-circle.svg"
-                        alt="">
+                        src="https://www.svgrepo.com/show/436829/pause-circle-fill.svg"
+                        alt="Pause">
                 </div>
                 <div class="mainicons" onclick="nextSong()">
                     <img class="mainicons"
-                        src="https://cdn.discordapp.com/attachments/768083738848133130/773142729714696212/skip-forward.svg"
-                        alt="">
+                        src="https://www.svgrepo.com/show/514128/forward.svg"
+                        alt="Forward">
                 </div>
             </div>
 
@@ -229,7 +230,7 @@
         </div>
 
         <div class="play-options">
-            <img id='vol-icon' class='mainicons' src="" alt="">
+            <img id='vol-icon' class='mainicons' src="https://www.svgrepo.com/show/532521/volume-xmark.svg" alt="Volume">
             <div id='volume' class="range-slider">
                 <input id='volumeBar' oninput="setVolume()" class="range-slider__range" type="range" value="100" min="0"
                     max="500">
@@ -396,16 +397,13 @@
         player.setVolume(v);
         vol_ico = document.getElementById('vol-icon');
         if (v == 0) {
-            vol_ico.src = 'https://cdn.discordapp.com/attachments/768083738848133130/773923517091676190/v0.png';
-        }
-        else if (v < 33) {
-            vol_ico.src = 'https://cdn.discordapp.com/attachments/768083738848133130/773921824635093013/v1.png';
+            vol_ico.src = 'https://www.svgrepo.com/show/532521/volume-xmark.svg';
         }
         else if (v < 66) {
-            vol_ico.src = 'https://cdn.discordapp.com/attachments/768083738848133130/773921822492065843/v2.png';
+            vol_ico.src = 'https://www.svgrepo.com/show/532520/volume-min.svg';
         }
         else {
-            vol_ico.src = 'https://cdn.discordapp.com/attachments/768083738848133130/773921819879014421/v3.png';
+            vol_ico.src = 'https://www.svgrepo.com/show/532519/volume-max.svg';
         }
 
     }
