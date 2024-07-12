@@ -55,6 +55,9 @@ And navigate to `http://127.0.0.1:8000/`.
 
 The following improvements were made to the original project:
 
+### July 11, 2024
+- [Fix]: Email login and replaced missing icons 
+
 ### Jan 22, 2024
 - [Doc]: Steps on recreating the application
 - [Style]: Html proper formatting and corrections
