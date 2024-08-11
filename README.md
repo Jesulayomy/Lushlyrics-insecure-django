@@ -1,5 +1,7 @@
 # LushLyrics-secure Django
 
+Live at: [lushlyrics](https://lushlyrics.jesulayomi.tech)  
+
 ## Setup
 
 The first thing to do is to clone the repository:
